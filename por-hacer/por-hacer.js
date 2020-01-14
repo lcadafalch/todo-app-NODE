@@ -8,11 +8,24 @@ const guardarDB = () =>{
     })
 
 }
+const cargarDB = () =>{
+    try {  
+        
+        listadoPorHacer = require("../base-datos/data.json")
+        
+    } catch (error) {
+
+        listadoPorHacer = []
+    }
+  
+}
 
 let listadoPorHacer = [];
 
-const crear = (descripcion) => {
 
+const crear = (descripcion) => {
+    
+  cargarDB()
 
     porHacer = {
         descripcion,
@@ -22,11 +35,22 @@ const crear = (descripcion) => {
     listadoPorHacer.push(porHacer)
     guardarDB();
     return porHacer;
+
+   
+}
+
+const getlistado = () =>{
+    cargarDB();
+    return listadoPorHacer;
+
 }
 
 
 
 
+
+
 module.exports = {
-    crear
+    crear,
+    getlistado
 }

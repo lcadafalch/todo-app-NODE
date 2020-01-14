@@ -1,5 +1,6 @@
 const argv = require("./config/yags").argv
 const porHacer = require("./por-hacer/por-hacer");
+const colors = require("colors");
 
 let comando = argv._[0];
 
@@ -11,7 +12,12 @@ switch (comando) {
         break;
 
     case "listar":
-        console.log("muestra todas las tareas");
+        let listado = porHacer.getlistado()
+        for (const tareas of listado) {
+            console.log("==========tareas=========".green)
+            console.table(tareas);
+            console.log("===================".green)
+        }
         break;
 
     case "actualizar":
